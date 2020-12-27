@@ -1,0 +1,102 @@
+command:
+- ${env}
+- ${interpreter}
+- ${program}
+- "momentum_sweep"
+- "--n_epochs=10"
+- "--patience=5"
+- "--tasks=contr"
+- "--modelcls=models.MomentumContrastiveModel"
+- "--batch_size=1"
+- "--K=50000"
+- ${args}
+program: train.py
+early_terminate:
+  min_iter: 3
+  type: hyperband
+method: bayes
+metric:
+  goal: maximise
+  name: val/earlystop_criterium
+parameters:
+  batch_update:
+    distribution: int_uniform
+    max: 32
+    min: 16
+  dem_dropout:
+    distribution: uniform
+    max: 0.6
+    min: 0.15
+  event_dropout:
+    distribution: uniform
+    max: 0.3
+    min: 0.075
+  freeze_emb:
+    distribution: categorical
+    values:
+    - "True"
+    - "False"
+  hidden_size:
+    distribution: int_uniform
+    max: 100
+    min: 50
+  lr:
+    distribution: uniform
+    max: 0.01
+    min: 0.0001
+  min_word_count:
+    distribution: int_uniform
+    max: 1000
+    min: 5
+  momentum:
+    distribution: uniform
+    max: 0.999
+    min: 0.99
+  normalize:
+    distribution: categorical
+    values:
+    - models.Normalizer
+    - models.LNNormalizer
+  normalize_mlp:
+    distribution: categorical
+    values:
+    - "True"
+    - "False"
+  padaware:
+    distribution: categorical
+    values:
+    - "True"
+    - "False"
+  patient_modelcls:
+    distribution: categorical
+    values:
+    - models.PatientPoolEncoder
+    - models.PatientRNNEncoder
+  prediction_steps:
+    distribution: int_uniform
+    max: 4
+    min: 1
+  rand_emb:
+    distribution: categorical
+    values:
+    - "True"
+    - "False"
+  sampler:
+    distribution: categorical
+    values:
+    - samplers.DiagnoseAgeSubjectRandomSampler
+    - torch.utils.data.RandomSampler
+  step_dropout:
+    distribution: uniform
+    max: 0.2
+    min: 0.05
+  temperature:
+    distribution: uniform
+    max: 0.5
+    min: 0.07
+  timestep_modelcls:
+    distribution: categorical
+    values:
+    - models.LinearMaxMeanSumPool
+    - models.LinearMaxSumPool
+    - models.LinearMaxPool

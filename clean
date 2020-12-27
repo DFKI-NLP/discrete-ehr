@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for EXP_NAME in "$@"
+do
+    rm -r runs/*"$EXP_NAME"*/
+    rm -r wandb/*"$EXP_NAME"*/
+done

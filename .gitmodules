@@ -1,0 +1,9 @@
+[submodule "fastText"]
+	path = fastText
+	url = git@github.com:facebookresearch/fastText.git
+[submodule "mimic3-benchmarks"]
+	path = mimic3-benchmarks
+	url = https://github.com/oguzserbetci/mimic3-benchmarks.git
+[submodule "tx-ray"]
+	path = tx-ray
+	url = git@github.com:copenlu/tx-ray.git

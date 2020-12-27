@@ -1,0 +1,42 @@
+command:
+- bash
+- pretrain_moco_fit.sh
+- moco_fit
+- ${args}
+method: bayes
+metric:
+  goal: maximise
+  name: val/earlystop_criterium
+early_terminate:
+  type: hyperband
+  min_iter: 3
+parameters:
+  batch_update:
+    distribution: int_uniform
+    max: 32
+    min: 16
+  hidden_size:
+    distribution: int_uniform
+    max: 200
+    min: 50
+  lr:
+    distribution: uniform
+    max: 0.005
+    min: 0.0005
+  min_word_count:
+    distribution: int_uniform
+    max: 1000
+    min: 5
+  dem_dropout:
+    distribution: uniform
+    max: 0.5
+    min: 0.15
+  event_dropout:
+    distribution: uniform
+    max: 0.3
+    min: 0.075
+  step_dropout:
+    distribution: uniform
+    max: 0.2
+    min: 0.05
+program: train.py

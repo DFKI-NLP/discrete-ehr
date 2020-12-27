@@ -1,0 +1,28 @@
+{
+  "exclude": [
+    "**/__pycache__"
+  ],
+
+  "ignore": [
+    "fastText",
+    "embeddings",
+    "notebooks",
+    "tx-ray",
+    "wandb",
+    "mimic3-benchmarks"
+  ],
+
+  "stubPath": "typings",
+  "venvPath": "/usr/local/Caskroom/miniconda/base/envs/icu",
+
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+
+  "pythonVersion": "3.7.7",
+
+  "executionEnvironments": [
+    {
+      "root": "."
+    }
+  ]
+}
